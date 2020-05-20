@@ -5,7 +5,25 @@
 </template>
 
 <script lang="ts">
+import { provide } from '@vue/composition-api'
+import { DefaultApolloClient } from '@vue/apollo-composable'
+import { ApolloClient } from 'apollo-client'
+import { createHttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+
+const httpLink = createHttpLink({ uri: 'https://rickandmortyapi.com/graphql' })
+
+// Create the apollo client
+const apolloClient = new ApolloClient({
+  link: httpLink,
+  cache: new InMemoryCache(),
+  connectToDevTools: true
+})
+
 export default {
-  name: 'App'
+  name: 'App',
+  setup() {
+    provide(DefaultApolloClient, apolloClient)
+  }
 }
 </script>

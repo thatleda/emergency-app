@@ -5,24 +5,24 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue from 'vue'
 
-import PersonalData from 'components/PersonalData.vue';
+import PersonalData from 'components/PersonalData.vue'
 
 export default Vue.extend({
   name: 'PageIndex',
   components: { PersonalData },
   data() {
-    return {};
-  }
-});
+    return {}
+  },
+})
 </script>
 
 <style lang="scss" module>
-  .page {
-    max-width: 60vw;
-    max-height: 90vh;
-    justify-content: center;
-    align-content: start;
-  }
+.page {
+  max-width: 60vw;
+  max-height: 90vh;
+  justify-content: center;
+  align-content: start;
+}
 </style>

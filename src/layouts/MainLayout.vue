@@ -14,7 +14,6 @@
         <q-toolbar-title>
           Emergency App
         </q-toolbar-title>
-
       </q-toolbar>
     </q-header>
 
@@ -25,10 +24,7 @@
       content-class="bg-grey-1"
     >
       <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
+        <q-item-label header class="text-grey-8">
           Essential Links
         </q-item-label>
         <EssentialLink
@@ -52,10 +48,10 @@ export default {
   name: 'MainLayout',
 
   components: {
-    EssentialLink
+    EssentialLink,
   },
 
-  data () {
+  data() {
     return {
       leftDrawerOpen: false,
       essentialLinks: [
@@ -63,10 +59,10 @@ export default {
           title: 'Docs',
           caption: 'quasar.dev',
           icon: 'fas fa-school',
-          link: 'https://quasar.dev'
-        }
-      ]
+          link: 'https://quasar.dev',
+        },
+      ],
     }
-  }
+  },
 }
 </script>

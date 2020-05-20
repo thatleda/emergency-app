@@ -8,23 +8,17 @@
 /* eslint-env node */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/camelcase */
-const { configure } = require('quasar/wrappers');
+const { configure } = require('quasar/wrappers')
 
-module.exports = configure(function (ctx) {
-    return {
+module.exports = configure(function(ctx) {
+  return {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
-    boot: [
-      'composition-api',
-      'i18n',
-      'axios',
-    ],
+    boot: ['composition-api', 'i18n'],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
-    css: [
-      'app.sass'
-    ],
+    css: ['app.sass'],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
@@ -69,15 +63,13 @@ module.exports = configure(function (ctx) {
         'QItemSection',
         'QItemLabel',
         'QForm',
-        'QInput'
+        'QInput',
       ],
 
-      directives: [
-        'Ripple'
-      ],
+      directives: ['Ripple'],
 
       // Quasar plugins
-      plugins: []
+      plugins: [],
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
@@ -85,7 +77,7 @@ module.exports = configure(function (ctx) {
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ts
     supportTS: {
-      tsCheckerConfig: { eslint: true }
+      tsCheckerConfig: { eslint: true },
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/prefetch-feature
@@ -93,7 +85,7 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      vueRouterMode: 'history', // available values: 'hash', 'history'
 
       // rtl: false, // https://quasar.dev/options/rtl-support
       // preloadChunks: true,
@@ -105,18 +97,39 @@ module.exports = configure(function (ctx) {
       // extractCSS: false,
 
       // https://quasar.dev/quasar-cli/cli-documentation/handling-webpack
-      extendWebpack (cfg) {
-          // linting is slow in TS projects, we execute it only for production builds
-        if (ctx.prod) {
+      extendWebpack(cfg) {
+
         cfg.module.rules.push({
           enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
+          test: /\.(graphql|gql)$/,
           exclude: /node_modules/,
-          options: {
-            formatter: require('eslint').CLIEngine.getFormatter('stylish'),
-          }
+          loader: 'graphql-tag/loader',
         })
+
+        const vueLoaderRule = cfg.module.rules
+          .find(el => el.test.toString() === /\.vue$/.toString())
+
+        const ruleFirstLoader = vueLoaderRule.use[0]
+        const options = ruleFirstLoader.options
+
+        // change options
+        options.transpileOptions = {
+          transforms: {
+            dangerousTaggedTemplateString: true
+          }
+        }
+
+        // linting is slow in TS projects, we execute it only for production builds
+        if (ctx.prod) {
+          cfg.module.rules.push({
+            enforce: 'pre',
+            test: /\.(js|vue)$/,
+            loader: 'eslint-loader',
+            exclude: /node_modules/,
+            options: {
+              formatter: require('eslint').CLIEngine.getFormatter('stylish'),
+            },
+          })
         }
       },
     },
@@ -125,7 +138,7 @@ module.exports = configure(function (ctx) {
     devServer: {
       https: false,
       port: 8080,
-      open: true // opens browser window automatically
+      open: true, // opens browser window automatically
     },
 
     // animations: 'all', // --- includes all animations
@@ -134,7 +147,7 @@ module.exports = configure(function (ctx) {
 
     // https://quasar.dev/quasar-cli/developing-ssr/configuring-ssr
     ssr: {
-      pwa: false
+      pwa: false,
     },
 
     // https://quasar.dev/quasar-cli/developing-pwa/configuring-pwa
@@ -144,7 +157,8 @@ module.exports = configure(function (ctx) {
       manifest: {
         name: 'Emergency App',
         short_name: 'Emergency App',
-        description: 'Eine App soll potentiellen Patienten einer Notaufnahme ermoeglichen sich bereits daheim anzumelden. Mit Hilfe einer Auswahl an Gruenden sollen Informationen zur Priorisierung der Verletzung/Krankheit mitgeteilt werden, welche Notaufnahme dafuer zustaendig ist und bei Anmeldung, wann man sich in der Notaufnahme einfinden soll. Der Patient soll zusaetzlich die Moeglichkeit erhalten, eine Erst-Anamnese per Telefon oder Videoanruf zu verlangen, um eventuell so auch einen Besuch in der Notaufnahme zu vermeiden.',
+        description:
+          'Eine App soll potentiellen Patienten einer Notaufnahme ermoeglichen sich bereits daheim anzumelden. Mit Hilfe einer Auswahl an Gruenden sollen Informationen zur Priorisierung der Verletzung/Krankheit mitgeteilt werden, welche Notaufnahme dafuer zustaendig ist und bei Anmeldung, wann man sich in der Notaufnahme einfinden soll. Der Patient soll zusaetzlich die Moeglichkeit erhalten, eine Erst-Anamnese per Telefon oder Videoanruf zu verlangen, um eventuell so auch einen Besuch in der Notaufnahme zu vermeiden.',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
@@ -153,41 +167,41 @@ module.exports = configure(function (ctx) {
           {
             src: 'statics/icons/icon-128x128.png',
             sizes: '128x128',
-            type: 'image/png'
+            type: 'image/png',
           },
           {
             src: 'statics/icons/icon-192x192.png',
             sizes: '192x192',
-            type: 'image/png'
+            type: 'image/png',
           },
           {
             src: 'statics/icons/icon-256x256.png',
             sizes: '256x256',
-            type: 'image/png'
+            type: 'image/png',
           },
           {
             src: 'statics/icons/icon-384x384.png',
             sizes: '384x384',
-            type: 'image/png'
+            type: 'image/png',
           },
           {
             src: 'statics/icons/icon-512x512.png',
             sizes: '512x512',
-            type: 'image/png'
-          }
-        ]
-      }
+            type: 'image/png',
+          },
+        ],
+      },
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova
     cordova: {
       // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
-      id: 'org.leda.cordova.emergency-app'
+      id: 'org.leda.cordova.emergency-app',
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-capacitor-apps/configuring-capacitor
     capacitor: {
-      hideSplashscreen: true
+      hideSplashscreen: true,
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-electron-apps/configuring-electron
@@ -196,13 +210,11 @@ module.exports = configure(function (ctx) {
 
       packager: {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
-
         // OS X / Mac App Store
         // appBundleId: '',
         // appCategoryType: '',
         // osxSign: '',
         // protocol: 'myapp://path',
-
         // Windows only
         // win32metadata: { ... }
       },
@@ -210,16 +222,16 @@ module.exports = configure(function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'emergency-app'
+        appId: 'emergency-app',
       },
 
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
       nodeIntegration: true,
 
-      extendWebpack (/* cfg */) {
+      extendWebpack(/* cfg */) {
         // do something with Electron main process Webpack cfg
         // chainWebpack also available besides this extendWebpack
-      }
-    }
+      },
+    },
   }
-});
+})

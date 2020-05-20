@@ -1,6 +1,9 @@
 <template>
   <div>
     <h1 :class="$style.headline">{{ title }}</h1>
+    <div>
+      {{ character }}
+    </div>
     <q-form :class="$style.form">
       <q-input hint="Vorname" type="text" v-model="firstNameInput"></q-input>
       <q-input hint="Nachname" type="text" v-model="lastNameInput"></q-input>
@@ -11,17 +14,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api';
+import { defineComponent, ref } from '@vue/composition-api'
+import { useQuery, useResult } from '@vue/apollo-composable'
+import mortyGQL from '../graphql/morty.graphql'
 
 function useNameInput() {
-  const firstNameInput = ref('');
-  const lastNameInput = ref('');
-  return { firstNameInput, lastNameInput };
+  const { result } = useQuery(mortyGQL)
+  const firstNameInput = ref('')
+  const lastNameInput = ref('')
+  const character = useResult(result, null, data => data.characters)
+  return { firstNameInput, lastNameInput, character }
 }
 
 function useBirthDateInput() {
-  const birthday = ref();
-  return { birthday };
+  const birthday = ref()
+  return { birthday }
 }
 
 export default defineComponent({
@@ -29,16 +36,16 @@ export default defineComponent({
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     active: {
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
   setup() {
-    return { ...useNameInput(), ...useBirthDateInput() };
-  }
-});
+    return { ...useNameInput(), ...useBirthDateInput() }
+  },
+})
 </script>
 <style lang="scss" module>
 .headline {

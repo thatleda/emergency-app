@@ -1,0 +1,16 @@
+{
+  characters(page: 0, filter: { name: "Morty" }) {
+    info {
+      count
+      pages
+      next
+      prev
+    }
+    results {
+      id
+      name
+      status
+      type
+    }
+  }
+}
