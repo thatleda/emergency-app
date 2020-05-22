@@ -1,16 +1,6 @@
 query Character($name: String!) {
-  characters(page: 0, filter: { name: $name }) {
-    info {
-      count
-      pages
-      next
-      prev
-    }
-    results {
-      id
-      name
-      status
-      type
-    }
+  result @client {
+    id
+    value
   }
 }
