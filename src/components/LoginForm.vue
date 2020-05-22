@@ -3,7 +3,7 @@
     <h1 :class="$style.headline">{{ title }}</h1>
     <q-input hint="Email" type="text" v-model="email"></q-input>
     <q-input hint="Passwort" type="password" v-model="password"></q-input>
-    <q-btn type="submit">Login</q-btn>
+    <q-btn type="submit" :class="$style.submitButton">Login</q-btn>
   </q-form>
 </template>
 
@@ -48,9 +48,12 @@ export default defineComponent({
 }
 .form {
   display: grid;
-  width: 95vw;
   grid-gap: 2rem;
   align-content: center;
   justify-content: center;
+}
+.submitButton {
+  width: 20rem;
+  max-width: 50vw;
 }
 </style>

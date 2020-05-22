@@ -4,7 +4,7 @@
     <q-input hint="Vorname" type="text" v-model="firstNameInput"></q-input>
     <q-input hint="Nachname" type="text" v-model="lastNameInput"></q-input>
     <q-input hint="Geburtsdatum" type="date" v-model="birthday"></q-input>
-    <q-btn type="submit">Abschicken</q-btn>
+    <q-btn type="submit" :class="$style.submitButton">Abschicken</q-btn>
   </q-form>
 </template>
 
@@ -54,5 +54,9 @@ export default defineComponent({
   grid-gap: 2rem;
   align-content: center;
   justify-content: center;
+}
+.submitButton {
+  width: 20rem;
+  max-width: 50vw;
 }
 </style>
