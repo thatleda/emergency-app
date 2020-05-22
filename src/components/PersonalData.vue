@@ -15,14 +15,14 @@
 
 <script lang="ts">
 import { defineComponent, ref } from '@vue/composition-api'
-import { useQuery, useResult } from '@vue/apollo-composable'
+import { useQuery, useResult, UseResultReturn } from '@vue/apollo-composable'
 import mortyGQL from '../graphql/morty.graphql'
 
 function useNameInput() {
   const { result } = useQuery(mortyGQL)
   const firstNameInput = ref('')
   const lastNameInput = ref('')
-  const character = useResult(result, null, data => data.characters)
+  const character: UseResultReturn<null | any> = useResult(result, null, data => data.results)
   return { firstNameInput, lastNameInput, character }
 }
 

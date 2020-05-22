@@ -1,5 +1,5 @@
-{
-  characters(page: 0, filter: { name: "Morty" }) {
+query Character($name: String!) {
+  characters(page: 0, filter: { name: $name }) {
     info {
       count
       pages
