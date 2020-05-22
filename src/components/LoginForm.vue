@@ -1,25 +1,23 @@
 <template>
   <q-form :class="$style.form">
     <h1 :class="$style.headline">{{ title }}</h1>
-    <q-input hint="Vorname" type="text" v-model="firstNameInput"></q-input>
-    <q-input hint="Nachname" type="text" v-model="lastNameInput"></q-input>
-    <q-input hint="Geburtsdatum" type="date" v-model="birthday"></q-input>
-    <q-btn type="submit">Abschicken</q-btn>
+    <q-input hint="Email" type="text" v-model="email"></q-input>
+    <q-input hint="Passwort" type="password" v-model="password"></q-input>
+    <q-btn type="submit">Login</q-btn>
   </q-form>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from '@vue/composition-api'
 
-const useNameInput = () => {
-  const firstNameInput = ref('')
-  const lastNameInput = ref('')
-  return { firstNameInput, lastNameInput }
+const useEmail = () => {
+  const email = ref('')
+  return { email }
 }
 
-const useBirthDateInput = () => {
-  const birthday = ref()
-  return { birthday }
+const usePassword = () => {
+  const password = ref('')
+  return { password }
 }
 
 export default defineComponent({
@@ -34,7 +32,7 @@ export default defineComponent({
     },
   },
   setup() {
-    return { ...useNameInput(), ...useBirthDateInput() }
+    return { ...useEmail(), ...usePassword() }
   },
 })
 </script>

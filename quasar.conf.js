@@ -51,7 +51,6 @@ module.exports = configure(function(ctx) {
       components: [
         'QLayout',
         'QHeader',
-        'QDrawer',
         'QPageContainer',
         'QPage',
         'QToolbar',
@@ -64,6 +63,10 @@ module.exports = configure(function(ctx) {
         'QItemLabel',
         'QForm',
         'QInput',
+        'QTabs',
+        'QTab',
+        'QTabPanels',
+        'QTabPanel',
       ],
 
       directives: ['Ripple'],
@@ -165,27 +168,17 @@ module.exports = configure(function(ctx) {
         theme_color: '#027be3',
         icons: [
           {
-            src: 'statics/icons/icon-128x128.png',
-            sizes: '128x128',
+            src: 'statics/icons/favicon-96x96.png',
+            sizes: '96x96',
             type: 'image/png',
           },
           {
-            src: 'statics/icons/icon-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: 'statics/icons/icon-256x256.png',
-            sizes: '256x256',
-            type: 'image/png',
-          },
-          {
-            src: 'statics/icons/icon-384x384.png',
+            src: 'statics/icons/favicon-510x510.png',
             sizes: '384x384',
             type: 'image/png',
           },
           {
-            src: 'statics/icons/icon-512x512.png',
+            src: 'statics/icons/favicon-510x510.png',
             sizes: '512x512',
             type: 'image/png',
           },
