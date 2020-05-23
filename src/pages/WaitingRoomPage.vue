@@ -3,10 +3,10 @@
     <div>
       <q-circular-progress
       show-value
-      class="text-orange q-ma-md"
+      class="text-red q-ma-md"
       :value="queueSize"
       size="150px"
-      color="orange"
+      color="red"
       font-size="20px"
     >
       {{ queueSize - 1}}<br />ppl.
@@ -14,10 +14,10 @@
 
     <q-circular-progress
       show-value
-      class="text-orange q-ma-md"
+      class="text-red q-ma-md"
       :value="timer"
       size="150px"
-      color="orange"
+      color="red"
       font-size="20px"
     >
       {{ timer }}
@@ -100,9 +100,10 @@ export default defineComponent({
       step.value = selectedStep
     }
 
+    // timer
     const timer = ref(1)
-    const countDownDate = new Date('May 24, 2020 23:59:59').getTime();
-    let x = setInterval(function(){
+    const countDownDate = new Date('May 24, 2020 17:59:59').getTime();
+    const interval = setInterval(function(){
       const now = new Date().getTime()
       const distance = countDownDate - now
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
@@ -111,10 +112,12 @@ export default defineComponent({
       if (distance < 0) {
         timer.value = 0
       } else {
+        clearInterval(interval)
         timer.value = hours + 'h ' + minutes + 'm ' + seconds + 's'
       }
     }, 100)
 
+    // queue
     const queueSize = ref(1)
     queueSize.value = 75
 
