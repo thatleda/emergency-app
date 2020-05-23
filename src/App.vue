@@ -12,21 +12,16 @@ import { withClientState } from 'apollo-link-state'
 import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloLink } from 'apollo-link'
+import { localResolvers } from 'src/apollo/resolvers/query'
 
-const httpLink = createHttpLink({ uri: 'https://rickandmortyapi.com/graphql' })
+const httpLink = createHttpLink({ uri: '' })
 
 // Create the apollo client
 const cache = new InMemoryCache({ addTypename: false })
 
 const stateLink = withClientState({
   cache,
-  resolvers: {
-    Query: {
-      result() {
-        return { id: 1, value: 'javi ist pornös' }
-      },
-    },
-  },
+  resolvers: localResolvers(),
 })
 
 const apolloClient = new ApolloClient({
