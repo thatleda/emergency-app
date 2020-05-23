@@ -75,7 +75,8 @@ module.exports = configure(function(ctx) {
         'QStep',
         'QStepper',
         'QChatMessage',
-        'QRadio'
+        'QRadio',
+        'QCircularProgress'
       ],
 
       directives: ['Ripple'],

@@ -1,5 +1,28 @@
 <template>
   <div id="q-app">
+    <div>
+      <q-circular-progress
+      show-value
+      class="text-orange q-ma-md"
+      :value="queueSize"
+      size="150px"
+      color="orange"
+      font-size="20px"
+    >
+      {{ queueSize - 1}}<br />ppl.
+    </q-circular-progress>
+
+    <q-circular-progress
+      show-value
+      class="text-orange q-ma-md"
+      :value="timer"
+      size="150px"
+      color="orange"
+      font-size="20px"
+    >
+      {{ timer }}
+    </q-circular-progress>
+    </div>
     <div class="q-pa-md">
       <q-stepper
         v-model="step"
@@ -13,7 +36,7 @@
           icon="fas fa-ticket-alt"
           :done="step > 1"
         >
-          Max wurde angemeldet und ist in der Warteschlangenposition Nummer 10.
+          Max wurde angemeldet und ist in der Warteschlangenposition Nummer {{ queueSize - 1 }}.
           Voraussichliche Wartezeit 3 Stunden.
 
           <q-stepper-navigation>
@@ -76,7 +99,26 @@ export default defineComponent({
     function handleClick(selectedStep: number){
       step.value = selectedStep
     }
-    return {step, handleClick}
+
+    const timer = ref(1)
+    const countDownDate = new Date('May 24, 2020 23:59:59').getTime();
+    let x = setInterval(function(){
+      const now = new Date().getTime()
+      const distance = countDownDate - now
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000)
+      if (distance < 0) {
+        timer.value = 0
+      } else {
+        timer.value = hours + 'h ' + minutes + 'm ' + seconds + 's'
+      }
+    }, 100)
+
+    const queueSize = ref(1)
+    queueSize.value = 75
+
+    return {step, handleClick, timer, queueSize}
   }
 })
 </script>
