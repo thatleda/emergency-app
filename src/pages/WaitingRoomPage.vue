@@ -24,7 +24,7 @@
         <q-step
           :name="2"
           title="Zeit zum Aufbrechen"
-          caption="Optional"
+          caption="(Empfehlung)"
           icon="fas fa-car-side"
           :done="step.value > 2"
         >
