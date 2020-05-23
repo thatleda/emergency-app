@@ -15,19 +15,19 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from '@vue/composition-api'
 
-export default {
-  name: 'MainLayout'
-}
+export default defineComponent({
+  name: 'MainLayout',
+})
 </script>
-<style lang="scss" module>
-  .layout {
-    text-align: center;
-  }
 
-  .container {
-    width: 100vw;
-    align-items: center;
-    justify-content: center;
-  }
+<style lang="scss" module>
+.layout {
+  text-align: center;
+}
+
+.container {
+  width: 100vw;
+}
 </style>

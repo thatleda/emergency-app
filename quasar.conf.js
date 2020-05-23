@@ -67,6 +67,7 @@ module.exports = configure(function(ctx) {
         'QTab',
         'QTabPanels',
         'QTabPanel',
+        'QSelect'
       ],
 
       directives: ['Ripple'],
