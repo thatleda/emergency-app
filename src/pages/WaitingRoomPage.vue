@@ -110,9 +110,9 @@ export default defineComponent({
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
       const seconds = Math.floor((distance % (1000 * 60)) / 1000)
       if (distance < 0) {
-        timer.value = 0
-      } else {
         clearInterval(interval)
+        timer.value = '0'
+      } else {
         timer.value = hours + 'h ' + minutes + 'm ' + seconds + 's'
       }
     }, 100)
