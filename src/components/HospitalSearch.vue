@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="$style.hospitalSearch">
     <q-input
       :v-model="search"
       clearable
@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref, SetupContext } from '@vue/composition-api'
+  import { defineComponent, Ref, ref, SetupContext } from '@vue/composition-api'
 
 function useAutocomplete(context: SetupContext) {
   const stringOptions = [
@@ -51,7 +51,8 @@ function useAutocomplete(context: SetupContext) {
 
   function handleHospitalSelect(val: string) {
     selectedHospital.value = val
-    context.emit('input', val)
+    context.emit('hospitalSelected', selectedHospital)
+    options.value = []
   }
 
   return {
@@ -72,8 +73,9 @@ export default defineComponent({
 </script>
 
 <style module lang="scss">
-.searchBar {
-  width: 60vw;
-  height: 50vh;
+.hospitalSearch {
+  width: 80%;
+  max-width: 60rem;
+  height: 30%;
 }
 </style>

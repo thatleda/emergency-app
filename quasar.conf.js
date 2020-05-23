@@ -63,13 +63,19 @@ module.exports = configure(function(ctx) {
         'QItemLabel',
         'QForm',
         'QInput',
+        'QSelect',
         'QTabs',
         'QTab',
         'QTabPanels',
         'QTabPanel',
+        'QDialog',
+        'QCard',
+        'QCardSection',
         'QSelect',
         'QStep',
-        'QStepper'
+        'QStepper',
+        'QChatMessage',
+        'QRadio'
       ],
 
       directives: ['Ripple'],
@@ -104,7 +110,6 @@ module.exports = configure(function(ctx) {
 
       // https://quasar.dev/quasar-cli/cli-documentation/handling-webpack
       extendWebpack(cfg) {
-
         cfg.module.rules.push({
           enforce: 'pre',
           test: /\.(graphql|gql)$/,
@@ -112,8 +117,9 @@ module.exports = configure(function(ctx) {
           loader: 'graphql-tag/loader',
         })
 
-        const vueLoaderRule = cfg.module.rules
-          .find(el => el.test.toString() === /\.vue$/.toString())
+        const vueLoaderRule = cfg.module.rules.find(
+          el => el.test.toString() === /\.vue$/.toString(),
+        )
 
         const ruleFirstLoader = vueLoaderRule.use[0]
         const options = ruleFirstLoader.options
@@ -121,8 +127,8 @@ module.exports = configure(function(ctx) {
         // change options
         options.transpileOptions = {
           transforms: {
-            dangerousTaggedTemplateString: true
-          }
+            dangerousTaggedTemplateString: true,
+          },
         }
 
         // linting is slow in TS projects, we execute it only for production builds

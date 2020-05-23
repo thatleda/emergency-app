@@ -8,7 +8,19 @@ const routes: RouteConfig[] = [
       { path: '', component: () => import('pages/Index.vue') },
       {
         path: 'waitingroom',
-        component: () => import('pages/WaitingRoomPage.vue'),
+        name: 'WaitingRoom',
+        component: () =>
+          /* webpackChunkName: "WaitingRoom" */ import(
+            'pages/WaitingRoomPage.vue'
+          ),
+      },
+      {
+        path: 'symptomchecker',
+        name: 'SymptomChecker',
+        component: () =>
+          /* webpackChunkName: "SymptomChecker" */ import(
+            'pages/SymptomCheckerPage.vue'
+          ),
       },
     ],
   },
