@@ -20,7 +20,9 @@
       color="red"
       font-size="20px"
     >
-      {{ timer }}
+      {{ Math.floor((timerCaption % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))  + 'h'}}
+      {{ Math.floor((timerCaption % (1000 * 60 * 60)) / (1000 * 60))  + 'm'}}
+      {{ Math.floor((timerCaption % (1000 * 60)) / 1000) + 's'}}
     </q-circular-progress>
     </div>
     <div class="q-pa-md">
@@ -36,8 +38,10 @@
           icon="fas fa-ticket-alt"
           :done="step > 1"
         >
-          Max wurde angemeldet und ist in der Warteschlangenposition Nummer {{ queueSize - 1 }}.
-          Voraussichliche Wartezeit 3 Stunden.
+          Max wurde angemeldet und ist in der Warteschlangenposition Nummer {{ queueSize }}.
+          Voraussichliche Wartezeit {{ Math.floor((timerCaption % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))  + 'h'}}
+          {{ Math.floor((timerCaption % (1000 * 60 * 60)) / (1000 * 60))  + 'm'}}
+          {{ Math.floor((timerCaption % (1000 * 60)) / 1000) + 's'}}.
 
           <q-stepper-navigation>
             <q-btn @click="()=> handleClick(2)" color="primary" label="Continue"></q-btn>
@@ -68,7 +72,7 @@
 
           <q-stepper-navigation>
             <q-btn @click="step = 4" color="primary" label="Continue"></q-btn>
-            <q-btn flat @click="step = 1" color="primary" label="Back" class="q-ml-sm"></q-btn>
+            <q-btn flat @click="step = 2" color="primary" label="Back" class="q-ml-sm"></q-btn>
           </q-stepper-navigation>
         </q-step>
 
@@ -81,7 +85,7 @@
 
           <q-stepper-navigation>
             <q-btn color="primary" label="Finish"></q-btn>
-            <q-btn flat @click="()=> handleClick(2)" color="primary" label="Back" class="q-ml-sm"></q-btn>
+            <q-btn flat @click="()=> handleClick(3)" color="primary" label="Back" class="q-ml-sm"></q-btn>
           </q-stepper-navigation>
         </q-step>
       </q-stepper>
@@ -101,19 +105,20 @@ export default defineComponent({
     }
 
     // timer
-    const timer = ref(1)
+    let timer = ref(1)
+    let timerCaption = ref(2)
     const countDownDate = new Date('May 24, 2020 17:59:59').getTime();
     const interval = setInterval(function(){
       const now = new Date().getTime()
       const distance = countDownDate - now
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000)
       if (distance < 0) {
         clearInterval(interval)
-        timer.value = '0'
+        timer.value = 0
+        timerCaption = 0
       } else {
-        timer.value = hours + 'h ' + minutes + 'm ' + seconds + 's'
+        // timer.value = hours + 'h ' + minutes + 'm ' + seconds + 's'
+        timer.value = 100
+        timerCaption.value = distance
       }
     }, 100)
 
@@ -121,7 +126,7 @@ export default defineComponent({
     const queueSize = ref(1)
     queueSize.value = 75
 
-    return {step, handleClick, timer, queueSize}
+    return {step, handleClick, timer, queueSize, timerCaption}
   }
 })
 </script>
