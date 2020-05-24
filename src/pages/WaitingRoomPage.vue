@@ -90,6 +90,19 @@
         </q-step>
       </q-stepper>
     </div>
+    <div class="q-pa-md">
+      <q-card>
+        <q-card-section class="bg-blue text-white">
+          <q-icon
+        v-for="size in ['md']"
+        :key="size"
+        :size="size"
+        name="fas fa-info-circle"
+      ></q-icon>
+          Bitte halten Sie ihr Telefon bereit, um den baldigen Anruf entgegen zu nehmen.
+        </q-card-section>
+      </q-card>
+    </div>
   </div>
 </template>
 
