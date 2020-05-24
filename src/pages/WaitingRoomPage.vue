@@ -2,6 +2,7 @@
   <div id="q-app">
     <div>
       <q-circular-progress
+      v-show="false"
       show-value
       class="text-red q-ma-md"
       :value="queueSize"
@@ -37,15 +38,12 @@
           title="Check-In"
           icon="fas fa-ticket-alt"
           :done="step > 1"
+          @click="()=> handleClick(2)"
         >
-          Max wurde angemeldet und ist in der Warteschlangenposition Nummer {{ queueSize }}.
+          Max wurde angemeldet und ist in der Warteschlangen für das Universitätsklinikum Freiburg.
           Voraussichliche Wartezeit {{ Math.floor((timerCaption % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))  + 'h'}}
           {{ Math.floor((timerCaption % (1000 * 60 * 60)) / (1000 * 60))  + 'm'}}
           {{ Math.floor((timerCaption % (1000 * 60)) / 1000) + 's'}}.
-
-          <q-stepper-navigation>
-            <q-btn @click="()=> handleClick(2)" color="primary" label="Continue"></q-btn>
-          </q-stepper-navigation>
         </q-step>
 
         <q-step
@@ -54,26 +52,18 @@
           caption="(Empfehlung)"
           icon="fas fa-car-side"
           :done="step.value > 2"
+          @click="step = 3"
         >
           Du solltest dich auf den Weg ins Krankenhaus machen.
-
-          <q-stepper-navigation>
-            <q-btn @click="step = 3" color="primary" label="Continue"></q-btn>
-            <q-btn flat @click="step = 1" color="primary" label="Back" class="q-ml-sm"></q-btn>
-          </q-stepper-navigation>
         </q-step>
 
         <q-step
           :name="3"
           title="Ankunft"
           icon="fas fa-hospital-user"
+          @click="step = 4"
         >
           Max hat das Krankenhaus um 19:00 Uhr erreicht.
-
-          <q-stepper-navigation>
-            <q-btn @click="step = 4" color="primary" label="Continue"></q-btn>
-            <q-btn flat @click="step = 2" color="primary" label="Back" class="q-ml-sm"></q-btn>
-          </q-stepper-navigation>
         </q-step>
 
         <q-step
@@ -81,12 +71,7 @@
           title="Im Behandlung"
           icon="fas fa-user-md"
         >
-          Max befindet sich seit 20:01 Uhr in Behandluch.
-
-          <q-stepper-navigation>
-            <q-btn color="primary" label="Finish"></q-btn>
-            <q-btn flat @click="()=> handleClick(3)" color="primary" label="Back" class="q-ml-sm"></q-btn>
-          </q-stepper-navigation>
+          Max befindet sich seit 20:01 Uhr in Behandlung.
         </q-step>
       </q-stepper>
     </div>

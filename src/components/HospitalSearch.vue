@@ -44,7 +44,7 @@ type HospitalInformation = {
 
 function useAutocomplete(context: SetupContext) {
   const stringOptions: HospitalInformation[] = [
-    { name: 'Krankenhaus Freiburg', queue: 74, distance: 5 },
+    { name: 'Universitätsklinikum Freiburg', queue: 74, distance: 5 },
     { name: 'Ev. Diakoniekrankenhaus Freiburg', queue: 40, distance: 10 },
     { name: 'St. Josefskrankenhaus Freiburg', queue: 42, distance: 15 },
     { name: 'Loretto-Krankenhaus', queue: 30, distance: 15 },

@@ -25,9 +25,9 @@
     ></q-input>
     <q-list :class="$style.radio">
       <q-item>
-        <q-radio v-model="anamnesis" val="no-pre"></q-radio>
+        <q-radio v-model="anamnesis" val="video"></q-radio>
         <q-item-section>
-          <q-item-label>Keine Vorab-Anamnese</q-item-label>
+          <q-item-label>Anamnese per Video</q-item-label>
         </q-item-section>
       </q-item>
       <q-item>
@@ -37,9 +37,9 @@
         </q-item-section>
       </q-item>
       <q-item>
-        <q-radio v-model="anamnesis" val="video"></q-radio>
+        <q-radio v-model="anamnesis" val="no-pre"></q-radio>
         <q-item-section>
-          <q-item-label>Anamnese per Video</q-item-label>
+          <q-item-label>Keine Vorab-Anamnese</q-item-label>
         </q-item-section>
       </q-item>
     </q-list>
