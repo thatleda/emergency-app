@@ -105,8 +105,8 @@ export default defineComponent({
     }
 
     // timer
-    let timer = ref(1)
-    let timerCaption = ref(2)
+    const timer = ref(1)
+    const timerCaption = ref(2)
     const countDownDate = new Date('May 24, 2020 17:45:00').getTime();
     const interval = setInterval(function(){
       const now = new Date().getTime()
@@ -114,7 +114,7 @@ export default defineComponent({
       if (distance < 0) {
         clearInterval(interval)
         timer.value = 0
-        timerCaption = 0
+        timerCaption.value = 0
       } else {
         // timer.value = hours + 'h ' + minutes + 'm ' + seconds + 's'
         timer.value = 100
