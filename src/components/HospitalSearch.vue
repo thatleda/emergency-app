@@ -22,8 +22,8 @@
       >
         <div>
           {{ item.name }}
-          <q-chip color="primary" text-color="white">
-            ({{ item.queue }} Personen)
+          <q-chip color="primary" text-color="white" icon="fas fa-users">
+            {{ item.queue }}
           </q-chip>
           <q-chip color="secondary">({{ item.distance }} km)</q-chip>
         </div>
