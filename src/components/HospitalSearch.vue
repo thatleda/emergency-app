@@ -19,8 +19,9 @@
         clickable
         v-ripple
         @click="() => handleHospitalSelect(item)"
+        :class="$style.item"
       >
-        <div>
+        <div :class="$style.chips">
           {{ item.name }}
           <q-chip color="primary" text-color="white" icon="fas fa-users">
             {{ item.queue }}
@@ -94,5 +95,19 @@ export default defineComponent({
   width: 80%;
   max-width: 60rem;
   height: 30%;
+}
+
+@media (max-width: 500px) {
+  .item {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+    align-items: center;
+  }
+}
+
+.chips {
+  justify-content: center;
 }
 </style>
