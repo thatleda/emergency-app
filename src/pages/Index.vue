@@ -1,6 +1,6 @@
 <template>
   <q-page :class="$style.page">
-    <h3>{{ selectedHospital.value }}</h3>
+    <h3>{{ selectedHospital.value.name }}</h3>
     <HospitalSearch @hospitalSelected="signUp" />
     <SignUpModal :active="signUpActive"></SignUpModal>
   </q-page>
