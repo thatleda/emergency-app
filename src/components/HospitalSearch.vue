@@ -31,9 +31,10 @@
 
 function useAutocomplete(context: SetupContext) {
   const stringOptions = [
-    'Freiburg Krankenhaus',
-    'Emmendingen Krankenhaus',
-    'Stuttgart Krankenhaus',
+    'Krankenhaus Freiburg (74 ppl) (5 km)',
+    'Ev. Diakoniekrankenhaus Freiburg (40 ppl) (10 km)',
+    'St. Josefskrankenhaus Freiburg (42 ppl) (15 km)',
+    'Loretto-Krankenhaus (30 ppl) (15 km)',
   ]
   const options: Ref<string[]> = ref([])
   const selectedHospital = ref('')

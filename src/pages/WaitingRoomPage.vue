@@ -107,7 +107,7 @@ export default defineComponent({
     // timer
     let timer = ref(1)
     let timerCaption = ref(2)
-    const countDownDate = new Date('May 24, 2020 17:59:59').getTime();
+    const countDownDate = new Date('May 24, 2020 17:45:00').getTime();
     const interval = setInterval(function(){
       const now = new Date().getTime()
       const distance = countDownDate - now
