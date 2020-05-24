@@ -60,7 +60,7 @@ export default defineComponent({
   setup() {
     const selectedSituation = ref(null)
     const details = ref('')
-    const anamnesis = ref()
+    const anamnesis = ref('video')
     return { selectedSituation, details, anamnesis }
   },
 })

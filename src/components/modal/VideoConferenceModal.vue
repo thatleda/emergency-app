@@ -3,23 +3,21 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from '@vue/composition-api'
 
-  export default defineComponent({
-    name: 'VideoConferenceModal',
-    props: {
-      active: {
-        default: false,
-        type: Boolean,
-        required: true
-      }
+export default defineComponent({
+  name: 'VideoConferenceModal',
+  props: {
+    active: {
+      default: false,
+      type: Boolean,
+      required: true,
     },
-    setup() {
-
-    }
-  })
+  },
+  setup() {
+    //TODO
+  },
+})
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
