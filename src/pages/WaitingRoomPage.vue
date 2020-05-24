@@ -107,7 +107,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api'
+  import { defineComponent, Ref, ref } from '@vue/composition-api'
 
 export default defineComponent({
   name: 'WaitingRoomPage',
@@ -118,8 +118,8 @@ export default defineComponent({
     }
 
     // timer
-    const timer = ref(1)
-    const timerCaption = ref(2)
+    const timer: Ref<number> = ref(1)
+    const timerCaption: Ref<number> = ref(2)
     const countDownDate = new Date('May 24, 2020 17:45:00').getTime();
     const interval = setInterval(function(){
       const now = new Date().getTime()
